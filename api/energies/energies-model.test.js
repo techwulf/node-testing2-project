@@ -25,6 +25,11 @@ describe('Energies.getAll()', () => {
     energies = await Energies.getAll();
   })
 
-  it.todo('returns all (4) energies');
-  it.todo('energies returned are in the correct shape');
+  it('returns all (4) energies', async () => {
+    expect(energies).toHaveLength(4);
+  });
+
+  it('energies returned are in the correct shape', () => {
+    expect(energies).toMatchSnapshot();
+  });
 });
