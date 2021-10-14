@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[POST] /api/energies responds with the newly created energy 1`] = `
+Object {
+  "energy": "animate",
+  "id": 5,
+}
+`;
