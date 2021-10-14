@@ -49,3 +49,24 @@ describe('Energies.insert()', () => {
     expect(energy).toMatchObject({id: 5, energy: 'animate'});
   });
 });
+
+describe('Energies.update()', () => {
+  const id = 3;
+  let updatedEnergy;
+  beforeEach(async () => {
+    updatedEnergy = await Energies.update(id, 'cosmic');
+  });
+
+  it(
+    'updating an existing energy changes that energy in the database', 
+    async () => {
+      const changedEnergy = await db('energies').where('id', id).first();
+      expect(changedEnergy).toMatchObject({id: 3, energy: 'cosmic'});
+  });
+
+  it(
+    'updating an existing energy resolves to the updated energy object',
+    async () => {
+      expect(updatedEnergy).toMatchObject({id: 3, energy: 'cosmic'});
+  });
+});
