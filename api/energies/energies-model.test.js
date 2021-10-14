@@ -33,3 +33,19 @@ describe('Energies.getAll()', () => {
     expect(energies).toMatchSnapshot();
   });
 });
+
+describe('Energies.insert()', () => {
+  let energy;
+  beforeEach(async () => {
+    energy = await Energies.insert({energy: 'animate'});
+  });
+
+  it('inserting a new energy causes 5 energies to exist in db', async () => {
+    const energies = await db('energies');
+    expect(energies).toHaveLength(5);
+  });
+
+  it('inserting a new energy resolves to the new energy object', async () => {
+    expect(energy).toMatchObject({id: 5, energy: 'animate'});
+  });
+});

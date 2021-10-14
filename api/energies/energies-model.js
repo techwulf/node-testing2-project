@@ -5,7 +5,13 @@ module.exports = {
     return db('energies');
   },
 
-  insert(energy) {
+  getById(id) {
+    return db('energies').where('id', id).first();
+  },
+
+  async insert(energy) {
+    const [id] = await db('energies').insert(energy);
+    return this.getById(id);
   },
 
   insertById(id) {
