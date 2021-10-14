@@ -70,3 +70,20 @@ describe('Energies.update()', () => {
       expect(updatedEnergy).toMatchObject({id: 3, energy: 'cosmic'});
   });
 });
+
+describe('Energies.remove()', () => {
+  const id = 4;
+  let deletedEnergy;
+  beforeEach(async () => {
+    deletedEnergy = await Energies.remove(id);
+  });
+
+  it('deleteing an energy causes 3 energies to exist in database', async () => {
+    const energies = await db('energies');
+    expect(energies).toHaveLength(3);
+  });
+
+  it('deleting an energy resolves to the deleted energy object', async () => {
+    expect(deletedEnergy).toMatchObject({id: 4, energy: 'undead'});
+  });
+});

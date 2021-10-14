@@ -21,6 +21,11 @@ module.exports = {
     return this.getById(id);
   },
 
-  remove(id) {
+  async remove(id) {
+    const deletedEnergy = await this.getById(id);
+    await db('energies')
+      .where('id', id)
+      .delete();
+    return deletedEnergy;
   }
 }
